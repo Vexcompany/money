@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="id"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance</title>
+    <script src="js/chart.js"></script>
+    <script src="js/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <div id="home" class="page active">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <div>
+                <h4 id="disp-name">Halo, User!</h4>
+                <p style="font-size:11px; color:var(--dim)">Kelola asetmu hari ini.</p>
+            </div>
+            <img id="disp-img" src="https://ui-avatars.com/api/?name=U+S&background=6366f1&color=fff" class="avatar">
+        </div>
+
+        <div class="hero">
+            <p style="font-size:11px; opacity:0.7">SALDO KESELURUHAN</p>
+            <h1 id="main-bal">Rp 0</h1>
+            <span id="abbr-bal" style="padding:4px 10px; background:rgba(255,255,255,0.1); border-radius:8px; font-size:12px">≈ 0jt</span>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:25px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1)">
+                <div><small style="font-size:9px; opacity:0.7">INCOME</small><br><b style="color:var(--in)" id="sum-in">Rp 0</b></div>
+                <div><small style="font-size:9px; opacity:0.7">EXPENSE</small><br><b style="color:var(--out)" id="sum-out">Rp 0</b></div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:20px">
+            <div style="display:flex; gap:10px; margin-bottom:15px">
+                <button onclick="setM('in')" id="bin" class="btn-toggle in">PEMASUKAN</button>
+                <button onclick="setM('out')" id="bout" class="btn-toggle out">PENGELUARAN</button>
+            </div>
+            <input type="text" id="amt" placeholder="Nominal Rp" onkeyup="fmt(this)">
+            <input type="text" id="dsc" placeholder="Sumber/Tujuan...">
+            <button class="btn btn-p" onclick="save()">Simpan Data</button>
+        </div>
+    </div>
+
+    <div id="goals" class="page">
+        <h2>Rencana & Target</h2>
+        <div class="card">
+            <input type="text" id="g-name" placeholder="Nama Target (Contoh: Beli Laptop)">
+            <input type="text" id="g-amt" placeholder="Target Nominal Rp" onkeyup="fmt(this)">
+            <button class="btn btn-p" onclick="saveGoal()">Tambah Target</button>
+        </div>
+        <div id="g-list"></div>
+    </div>
+
+    <div id="history" class="page">
+        <div style="display:flex; justify-content:space-between; margin-bottom:20px">
+            <h2>Riwayat</h2>
+            <button onclick="dlEx()" class="btn-export">Export .xlsx</button>
+        </div>
+        <div id="h-list" class="card"></div>
+    </div>
+
+    <div id="settings" class="page">
+        <h2>Profil User</h2>
+        <div class="card">
+            <input type="text" id="set-name" placeholder="Ganti nama...">
+            <input type="text" id="set-img" placeholder="URL Foto baru...">
+            <button class="btn btn-p" onclick="apply()">Update Identitas</button>
+        </div>
+
+        <div class="dev-card">
+            <img src="images/x4o7xs.jpg" class="dev-img">
+            <h4 style="margin-top:10px">Depan Developer</h4>
+            <p style="font-size:11px; color:var(--dim)">Finance Version 2.0.0</p>
+        </div>
+        
+        <div class="dev-card">
+            <img src="images/vex.jpg" class="dev-img">
+            <h4 style="margin-top:10px">Vex Helper</h4>
+            <p style="font-size:11px; color:var(--dim)">Finance Version 2.0.0</p>
+        </div>
+        
+        <button onclick="reset()" class="btn-reset">HAPUS SEMUA DATA</button>
+    </div>
+</div>
+
+<nav class="nav-bar">
+    <button class="nav-btn active" onclick="sw('home', this)"><i class="fas fa-home-alt"></i>Home</button>
+    <button class="nav-btn" onclick="sw('goals', this)"><i class="fas fa-bullseye"></i>Rencana</button>
+    <button class="nav-btn" onclick="sw('history', this)"><i class="fas fa-receipt"></i>Riwayat</button>
+    <button class="nav-btn" onclick="sw('settings', this)"><i class="fas fa-user-circle"></i>User</button>
+</nav>
+
+<script src="js/script.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bf56ac72fc84547',t:'MTc2ODY0ODM0MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><iframe height="1" width="1" style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+
+</body></html>
